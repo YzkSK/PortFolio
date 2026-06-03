@@ -29,7 +29,7 @@ export default function ProjectModal({ project, onClose }: Props) {
           </h3>
           <button
             onClick={onClose}
-            aria-label="×"
+            aria-label="Close"
             className="text-white/40 hover:text-white text-2xl leading-none transition-colors"
           >
             ×

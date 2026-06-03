@@ -30,7 +30,7 @@ describe('ProjectModal', () => {
   it('calls onClose when × is clicked', async () => {
     const onClose = vi.fn()
     render(<ProjectModal project={projects[0]} onClose={onClose} />)
-    await userEvent.click(screen.getByRole('button', { name: '×' }))
+    await userEvent.click(screen.getByRole('button', { name: 'Close' }))
     expect(onClose).toHaveBeenCalledOnce()
   })
 })
