@@ -94,7 +94,7 @@ a { text-decoration: none; color: inherit; }
 .hero-inner {
   position: relative; z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 480px;
   gap: clamp(40px, 6vw, 80px);
   align-items: start;
 }
@@ -171,7 +171,7 @@ a { text-decoration: none; color: inherit; }
 }
 .gh-lbl { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--green); }
 .gh-yr { font-size: 11px; color: #aaa; }
-.gh-chart { width: 100%; height: auto; }
+.gh-chart { width: 100%; height: auto; min-height: 80px; }
 .gh-stats {
   display: flex; margin-top: 14px;
   border-top: 1px solid var(--gray-200); padding-top: 12px;
