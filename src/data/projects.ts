@@ -1,36 +1,39 @@
-import type { Project } from '../types'
+export interface Project {
+  id: string
+  title: string
+  category: string
+  tags: string[]
+  thumbBg: string
+  num: string
+  url?: string
+}
 
 export const projects: Project[] = [
   {
     id: 'project-1',
-    title: 'Project Alpha',
-    description: 'ReactとNode.jsで構築したフルスタックWebアプリ。リアルタイムデータ同期に対応。',
-    detail:
-      'TypeScriptで型安全なAPIを設計し、WebSocketによるリアルタイム更新を実装。CI/CDはGitHub Actionsで自動化。',
-    tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
-    accent: 'green',
-    githubUrl: 'https://github.com/yourusername/project-alpha',
-    demoUrl: 'https://project-alpha.example.com',
+    title: 'YzkApps',
+    category: 'WEB APPLICATION',
+    tags: ['TypeScript', 'React', 'Firebase', 'Gemini API'],
+    thumbBg: 'linear-gradient(140deg,#e8f5ee,#a8d5b5)',
+    num: '01',
+    url: 'https://github.com/YzkSK/YzkApps',
   },
   {
     id: 'project-2',
-    title: 'Project Beta',
-    description: 'モバイルファーストで設計したデザインシステム。コンポーネントライブラリを含む。',
-    detail:
-      'Storybookでコンポーネントカタログを整備。アクセシビリティスコアLighthouse 100を達成。',
-    tags: ['React', 'Tailwind CSS', 'Storybook'],
-    accent: 'yellow',
-    githubUrl: 'https://github.com/yourusername/project-beta',
+    title: 'classroom remaked',
+    category: 'MOBILE APP',
+    tags: ['Flutter', 'Dart', 'Firebase'],
+    thumbBg: 'linear-gradient(140deg,#ede7f6,#ce93d8)',
+    num: '02',
+    url: 'https://github.com/YzkSK/classroom_remaked',
   },
   {
     id: 'project-3',
-    title: 'Project Gamma',
-    description: 'AI APIを活用したテキスト変換ツール。PythonバックエンドとReactフロントエンド。',
-    detail:
-      'FastAPIでストリーミングレスポンスを実装。Vercelへのデプロイでゼロコールドスタートを実現。',
-    tags: ['Python', 'FastAPI', 'React', 'Vercel'],
-    accent: 'purple',
-    githubUrl: 'https://github.com/yourusername/project-gamma',
-    demoUrl: 'https://project-gamma.example.com',
+    title: 'Discord Bot',
+    category: 'BOT / TOOL',
+    tags: ['TypeScript', 'Discord.js', 'Docker'],
+    thumbBg: 'linear-gradient(140deg,#e8eaf6,#9fa8da)',
+    num: '03',
+    url: 'https://github.com/YzkSK/discord-bot',
   },
 ]
