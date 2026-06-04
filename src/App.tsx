@@ -1,19 +1,21 @@
 import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
 import Hero from './components/sections/Hero'
-import About from './components/sections/About'
-import Skills from './components/sections/Skills'
 import Works from './components/sections/Works'
+import Skills from './components/sections/Skills'
+import Education from './components/sections/Education'
 
 export default function App() {
   return (
-    <div className="bg-bg text-white min-h-screen">
+    <>
       <Header />
       <main>
         <Hero />
-        <About />
-        <Skills />
         <Works />
+        <Skills />
+        <Education />
       </main>
-    </div>
+      <Footer />
+    </>
   )
 }
