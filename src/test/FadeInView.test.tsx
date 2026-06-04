@@ -12,6 +12,7 @@ describe('FadeInView', () => {
     const { container } = render(
       <FadeInView className="custom-class"><span>x</span></FadeInView>
     )
+    expect(container.firstChild).toHaveClass('fi')
     expect(container.firstChild).toHaveClass('custom-class')
   })
 })

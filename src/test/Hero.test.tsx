@@ -6,7 +6,17 @@ import HeroAvatar from '../components/sections/Hero/HeroAvatar'
 describe('HeroText', () => {
   it('renders the name', () => {
     render(<HeroText />)
-    expect(screen.getByText('佐藤')).toBeInTheDocument()
+    expect(screen.getByText('佐藤 康樹')).toBeInTheDocument()
+  })
+
+  it('renders the badge', () => {
+    render(<HeroText />)
+    expect(screen.getByText('FRONTEND / MOBILE ENGINEER')).toBeInTheDocument()
+  })
+
+  it('renders the tagline', () => {
+    render(<HeroText />)
+    expect(screen.getByText('アイデアを、動くものに変える。')).toBeInTheDocument()
   })
 })
 

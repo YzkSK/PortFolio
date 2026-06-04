@@ -1,11 +1,20 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import AboutCard from '../components/sections/About/AboutCard'
+import Education from '../components/sections/Education'
 
-describe('AboutCard', () => {
-  it('renders label and value', () => {
-    render(<AboutCard label="所在地" value="東京都" />)
-    expect(screen.getByText('所在地')).toBeInTheDocument()
-    expect(screen.getByText('東京都')).toBeInTheDocument()
+describe('Education', () => {
+  it('renders the section title', () => {
+    render(<Education />)
+    expect(screen.getByText('学歴')).toBeInTheDocument()
+  })
+
+  it('renders university entry', () => {
+    render(<Education />)
+    expect(screen.getByText('○○大学')).toBeInTheDocument()
+  })
+
+  it('renders high school entry', () => {
+    render(<Education />)
+    expect(screen.getByText('○○高等学校')).toBeInTheDocument()
   })
 })

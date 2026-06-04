@@ -1,26 +1,2 @@
-import type { Variants } from 'framer-motion'
-
-export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
-}
-
-export const stagger: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
-  },
-}
-
-export const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.25, ease: 'easeOut' },
-  },
-}
+// 未使用 — アニメーションは IntersectionObserver + .fi/.on クラスに移行
+export {}

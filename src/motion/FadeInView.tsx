@@ -1,6 +1,4 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { fadeInUp } from './variants'
+import { useFadeIn } from '../hooks/useFadeIn'
 
 interface Props {
   children: React.ReactNode
@@ -9,19 +7,10 @@ interface Props {
 }
 
 export default function FadeInView({ children, className, delay = 0 }: Props) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
-
+  const ref = useFadeIn(delay)
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-      variants={fadeInUp}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      transition={{ delay }}
-    >
+    <div ref={ref} className={`fi${className ? ` ${className}` : ''}`}>
       {children}
-    </motion.div>
+    </div>
   )
 }

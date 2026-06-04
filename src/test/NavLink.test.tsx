@@ -1,23 +1,19 @@
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi } from 'vitest'
-import NavLink from '../components/layout/NavLink'
+import { describe, it, expect } from 'vitest'
+import Header from '../components/layout/Header'
 
-describe('NavLink', () => {
-  it('renders label', () => {
-    render(<NavLink href="#about" label="About" isActive={false} onClick={() => {}} />)
-    expect(screen.getByText('About')).toBeInTheDocument()
+describe('Header', () => {
+  it('renders logo', () => {
+    render(<Header />)
+    expect(screen.getAllByText('佐藤 康樹')[0]).toBeInTheDocument()
   })
 
-  it('calls onClick on click', async () => {
-    const onClick = vi.fn()
-    render(<NavLink href="#about" label="About" isActive={false} onClick={onClick} />)
-    await userEvent.click(screen.getByText('About'))
-    expect(onClick).toHaveBeenCalledOnce()
-  })
-
-  it('applies active style when isActive', () => {
-    render(<NavLink href="#about" label="About" isActive={true} onClick={() => {}} />)
-    expect(screen.getByText('About')).toHaveClass('text-accent-yellow')
+  it('renders nav links in desktop nav', () => {
+    render(<Header />)
+    const nav = document.querySelector('.nav-links')!
+    expect(nav.textContent).toContain('Works')
+    expect(nav.textContent).toContain('Skills')
+    expect(nav.textContent).toContain('Education')
+    expect(nav.textContent).toContain('Contact')
   })
 })

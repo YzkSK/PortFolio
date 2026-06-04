@@ -1,21 +1,31 @@
-import FadeInView from '../../../motion/FadeInView'
 import SkillGroup from './SkillGroup'
-import { skillCategories } from '../../../data/skills'
+import { skillColumns } from '../../../data/skills'
+import { useFadeIn } from '../../../hooks/useFadeIn'
 
 export default function Skills() {
+  const headRef = useFadeIn()
+  const col1Ref = useFadeIn()
+  const col2Ref = useFadeIn(0.15)
+
   return (
-    <section id="skills" className="py-40 px-20">
-      <FadeInView>
-        <h2 className="text-xs text-accent-yellow tracking-[0.3em] uppercase mb-16">
-          Skills
-        </h2>
-      </FadeInView>
-      <div className="flex flex-col gap-10 max-w-2xl">
-        {skillCategories.map((cat, i) => (
-          <FadeInView key={cat.label} delay={i * 0.1}>
-            <SkillGroup {...cat} />
-          </FadeInView>
-        ))}
+    <section id="skills" className="sec">
+      <div className="container">
+        <div className="sec-head fi" ref={headRef}>
+          <div className="sec-num">02</div>
+          <h2 className="sec-title"><mark>スキル</mark></h2>
+        </div>
+        <div className="skills-grid">
+          <div className="fi" ref={col1Ref}>
+            {skillColumns[0].map((cat) => (
+              <SkillGroup key={cat.label} {...cat} />
+            ))}
+          </div>
+          <div className="fi" ref={col2Ref}>
+            {skillColumns[1].map((cat) => (
+              <SkillGroup key={cat.label} {...cat} />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

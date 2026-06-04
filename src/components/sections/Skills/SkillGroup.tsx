@@ -1,13 +1,16 @@
+import SkillDots from './SkillDots'
 import type { SkillCategory } from '../../../types'
-import SkillBadge from './SkillBadge'
 
 export default function SkillGroup({ label, skills }: SkillCategory) {
   return (
-    <div className="flex flex-col gap-4">
-      <span className="text-white/30 text-xs uppercase tracking-widest">{label}</span>
-      <div className="flex flex-wrap gap-2">
-        {skills.map((s) => (
-          <SkillBadge key={s.name} name={s.name} />
+    <div className="skill-group">
+      <div className="skill-group-label">{label}</div>
+      <div className="skill-list">
+        {skills.map((skill) => (
+          <div key={skill.name} className="skill-row">
+            <span className="skill-name">{skill.name}</span>
+            <SkillDots level={skill.level} />
+          </div>
         ))}
       </div>
     </div>

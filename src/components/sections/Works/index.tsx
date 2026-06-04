@@ -1,36 +1,23 @@
-import { AnimatePresence } from 'framer-motion'
-import FadeInView from '../../../motion/FadeInView'
 import ProjectCard from './ProjectCard'
-import ProjectModal from './ProjectModal'
-import ModalBackdrop from './ModalBackdrop'
-import { useModal } from '../../../hooks/useModal'
 import { projects } from '../../../data/projects'
+import { useFadeIn } from '../../../hooks/useFadeIn'
 
 export default function Works() {
-  const { selected, open, close } = useModal()
+  const headRef = useFadeIn()
 
   return (
-    <section id="works" className="py-40 px-20 pb-60">
-      <FadeInView>
-        <h2 className="text-xs text-accent-yellow tracking-[0.3em] uppercase mb-16">
-          Works
-        </h2>
-      </FadeInView>
-      <div className="grid grid-cols-3 gap-6">
-        {projects.map((project, i) => (
-          <FadeInView key={project.id} delay={i * 0.1}>
-            <ProjectCard project={project} onClick={() => open(project)} />
-          </FadeInView>
-        ))}
+    <section id="works" className="sec">
+      <div className="container">
+        <div className="sec-head fi" ref={headRef}>
+          <div className="sec-num">01</div>
+          <h2 className="sec-title"><mark>制作実績</mark></h2>
+        </div>
+        <div className="works-grid">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.id} project={project} delay={i * 0.1} />
+          ))}
+        </div>
       </div>
-      <AnimatePresence>
-        {selected && (
-          <>
-            <ModalBackdrop onClick={close} />
-            <ProjectModal project={selected} onClose={close} />
-          </>
-        )}
-      </AnimatePresence>
     </section>
   )
 }
