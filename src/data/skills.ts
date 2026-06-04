@@ -1,34 +1,34 @@
 import type { SkillCategory } from '../types'
 
-export const skillCategories: SkillCategory[] = [
-  {
-    label: 'Languages',
-    skills: [
-      { name: 'TypeScript' },
-      { name: 'JavaScript' },
-      { name: 'Python' },
-      { name: 'HTML' },
-      { name: 'CSS' },
-    ],
-  },
-  {
-    label: 'Frameworks & Libraries',
-    skills: [
-      { name: 'React' },
-      { name: 'Next.js' },
-      { name: 'Tailwind CSS' },
-      { name: 'Framer Motion' },
-      { name: 'FastAPI' },
-    ],
-  },
-  {
-    label: 'Tools',
-    skills: [
-      { name: 'Git' },
-      { name: 'Vite' },
-      { name: 'Vitest' },
-      { name: 'GitHub Actions' },
-      { name: 'Vercel' },
-    ],
-  },
+export const skillColumns: [SkillCategory[], SkillCategory[]] = [
+  [
+    {
+      label: 'FRONTEND',
+      skills: [
+        { name: 'HTML / CSS', level: 5 },
+        { name: 'JavaScript / TypeScript', level: 4 },
+        { name: 'React', level: 4 },
+        { name: 'Next.js', level: 3 },
+        { name: 'Tailwind CSS', level: 3 },
+      ],
+    },
+    {
+      label: 'MOBILE',
+      skills: [
+        { name: 'Flutter', level: 4 },
+        { name: 'Android', level: 3 },
+      ],
+    },
+  ],
+  [
+    {
+      label: 'BACKEND / INFRA',
+      skills: [
+        { name: 'Node.js', level: 3 },
+        { name: 'Firebase', level: 4 },
+        { name: 'SQL / PostgreSQL', level: 3 },
+        { name: 'Git / GitHub', level: 5 },
+      ],
+    },
+  ],
 ]
