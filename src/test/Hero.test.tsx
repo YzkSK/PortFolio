@@ -1,28 +1,16 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import HeroText from '../components/sections/Hero/HeroText'
-import HeroAvatar from '../components/sections/Hero/HeroAvatar'
+import Hero from '../components/sections/Hero'
 
-describe('HeroText', () => {
-  it('renders the name', () => {
-    render(<HeroText />)
-    expect(screen.getByText('佐藤 康樹')).toBeInTheDocument()
+describe('Hero', () => {
+  it('shows the deleted and inserted headline lines', () => {
+    render(<Hero />)
+    expect(screen.getByText('我慢する').closest('del')).not.toBeNull()
+    expect(screen.getByText('作り直す').closest('ins')).not.toBeNull()
   })
 
-  it('renders the badge', () => {
-    render(<HeroText />)
-    expect(screen.getByText('FRONTEND / MOBILE ENGINEER')).toBeInTheDocument()
-  })
-
-  it('renders the tagline', () => {
-    render(<HeroText />)
-    expect(screen.getByText('アイデアを、動くものに変える。')).toBeInTheDocument()
-  })
-})
-
-describe('HeroAvatar', () => {
-  it('renders an img with alt text', () => {
-    render(<HeroAvatar src="/avatar.jpg" alt="佐藤 康樹" />)
-    expect(screen.getByAltText('佐藤 康樹')).toBeInTheDocument()
+  it('renders the photo with alt text', () => {
+    render(<Hero />)
+    expect(screen.getByAltText('佐藤 康樹の写真')).toBeInTheDocument()
   })
 })
