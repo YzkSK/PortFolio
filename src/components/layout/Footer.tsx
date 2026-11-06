@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="footer">
-      © 2025 佐藤 康樹. All rights reserved.
-    </footer>
+    <div className="foot">
+      GitHub{'　'}<a href="https://github.com/YzkSK" target="_blank" rel="noopener">github.com/YzkSK</a>
+    </div>
   )
 }
