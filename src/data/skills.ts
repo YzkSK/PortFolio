@@ -1,34 +1,8 @@
 import type { SkillCategory } from '../types'
 
-export const skillColumns: [SkillCategory[], SkillCategory[]] = [
-  [
-    {
-      label: 'FRONTEND',
-      skills: [
-        { name: 'HTML / CSS', level: 5 },
-        { name: 'JavaScript / TypeScript', level: 4 },
-        { name: 'React', level: 4 },
-        { name: 'Next.js', level: 3 },
-        { name: 'Tailwind CSS', level: 3 },
-      ],
-    },
-    {
-      label: 'MOBILE',
-      skills: [
-        { name: 'Flutter', level: 4 },
-        { name: 'Android', level: 3 },
-      ],
-    },
-  ],
-  [
-    {
-      label: 'BACKEND / INFRA',
-      skills: [
-        { name: 'Node.js', level: 3 },
-        { name: 'Firebase', level: 4 },
-        { name: 'SQL / PostgreSQL', level: 3 },
-        { name: 'Git / GitHub', level: 5 },
-      ],
-    },
-  ],
+export const skillGroups: SkillCategory[] = [
+  { label: 'Webフロント', skills: ['HTML / CSS', 'TypeScript', 'React', 'Next.js', 'Tailwind CSS'] },
+  { label: 'モバイル', skills: ['Flutter', 'Android'] },
+  { label: 'バックエンド', skills: ['Node.js', 'Firebase', 'PostgreSQL', 'Git / GitHub'] },
+  { label: 'そのほか', skills: ['Python'] },
 ]
