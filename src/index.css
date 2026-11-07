@@ -1,4 +1,4 @@
-/* layout: 1カラムの読み物。見出しと作品の「不便→直し方」だけ diff の行として組む。右の細い列はレビューコメント */
+/* layout: 1カラムの読み物。見出しと作品の「不便→直し方」だけ diff の行として組む。右の細い列は + 行へのレビューコメント */
 *,*::before,*::after{box-sizing:border-box}
 :root{
   --bg:#f6f7f8; --ink:#1b1d21; --gray:#696d75; --rule:#d9dce1;
@@ -6,7 +6,7 @@
   --add:#1f7a43; --add-bg:#e4f4ea; --add-strong:#b7e3c6;
   --print:"BIZ UDPMincho","Hiragino Mincho ProN",serif;
   --head:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--ink:#e6e7e9;--gray:#9a9ea6;--rule:#2f3238;--del:#ff7b72;--del-bg:#33191a;--del-strong:#6e2a2a;--add:#5fd48a;--add-bg:#14301f;--add-strong:#1f6139;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#15171a;--ink:#e6e7e9;--gray:#9a9ea6;--rule:#2f3238;--del:#ff7b72;--del-bg:#33191a;--del-strong:#6e2a2a;--add:#5fd48a;--add-bg:#14301f;--add-strong:#1f6139;color-scheme:dark}
@@ -28,35 +28,45 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--print);lin
 .diff .sign.add{color:var(--add)}
 .diff ins{text-decoration:none}
 .diff del{text-decoration:line-through;text-decoration-color:var(--del);text-decoration-thickness:1px}
-.diff del mark{background:var(--del-strong);color:inherit}
-.diff ins mark{background:var(--add-strong);color:inherit}
+/* 濃い部分は左から塗られる。.pending の間だけ幅0 */
+.diff mark{color:inherit;background:linear-gradient(var(--hl),var(--hl)) no-repeat 0 0/100% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .6s cubic-bezier(.2,.7,.2,1)}
+.diff del mark{--hl:var(--del-strong)}
+.diff ins mark{--hl:var(--add-strong);transition-delay:.35s}
+.pending .diff mark{background-size:0 100%}
 
-/* ヒーロー */
+/* ヒーロー: 削除行は控えめにして視線を + 行へ */
 .hero h1{font-family:var(--head);font-weight:900;font-size:clamp(1.9rem,5.6vw,3.8rem);line-height:1.4;margin:0;text-wrap:balance}
 .hero h1 .diff + .diff{animation:in .5s .6s ease-out both}
 .hero h1 del{color:var(--gray);text-decoration-thickness:.06em}
+.hero h1 del mark{background:transparent}
+.hero h1 ins mark{transition-delay:1s}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.hero h1 .diff + .diff{animation:none}}
 .hero p{max-width:34em;margin:32px 0 0;font-size:1.05rem}
 .photo{margin:0 0 20px;width:150px;max-width:100%}
 .photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;border-radius:2px}
 
 h2{font-family:var(--head);font-weight:500;font-size:1.05rem;margin:96px 0 8px;padding-bottom:8px;border-bottom:1px solid var(--ink)}
 
-/* 作品 */
-.work{padding:32px 0}
+/* 作品: コメントは diff の下端(+ 行)に揃える */
+.work{padding:32px 0;column-gap:40px;row-gap:0;grid-template-areas:"head ." "diff comment" "care ."}
+.work .head{grid-area:head}
+.work > .diff{grid-area:diff}
+.work .care{grid-area:care}
+.work .comment{grid-area:comment;align-self:end;border-left-color:var(--add);padding-block:2px}
 .work h3{font-family:var(--head);font-weight:900;font-size:1.6rem;margin:0;line-height:1.3}
-.work h3 a{color:inherit;text-decoration:none}
-.work h3 a:hover,.work h3 a:focus-visible{text-decoration:underline;text-decoration-color:var(--add);text-underline-offset:4px}
-.work a:focus-visible{outline:2px solid var(--add);outline-offset:3px}
+.work h3 a{color:inherit;text-decoration:none;background:linear-gradient(var(--add),var(--add)) no-repeat 0 100%/0 2px;transition:background-size .3s ease-out}
+.work h3 a:hover,.work h3 a:focus-visible{background-size:100% 2px}
+.work a:focus-visible,.foot a:focus-visible{outline:2px solid var(--add);outline-offset:3px}
 .work .meta{color:var(--gray);font-size:.85rem;margin:2px 0 16px;font-variant-numeric:tabular-nums}
 .work .diff{font-size:.98rem;border-radius:2px;overflow:hidden}
 .work .care{margin:14px 0 0;font-size:.95rem}
 .work .care b{font-family:var(--head);font-weight:500;color:var(--gray);margin-right:10px}
+.work ~ .work .care b{display:none}
 
-/* できること */
+/* できること: 追加行として + を付ける */
 .can{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px;margin-top:20px}
 .can h3{font-family:var(--head);font-size:1rem;margin:0 0 4px}
+.can h3::before{content:"+";font-family:var(--mono);color:var(--add);margin-right:.5em}
 .can p{margin:0;color:var(--gray);font-size:.95rem}
 
 /* 学歴: 作品と同じ見出し・灰色の補足で、カードにはしない */
@@ -69,8 +79,41 @@ h2{font-family:var(--head);font-weight:500;font-size:1.05rem;margin:96px 0 8px;p
 .foot{margin-top:96px;font-size:.9rem;color:var(--gray)}
 .foot a{color:var(--ink)}
 
+/* ===== 動き ===== */
+/* 読み込み時: 上から順に現れる */
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.slip{animation:rise .5s both}
+.hero h1 .diff:first-child{animation:rise .5s .15s both}
+.hero p{animation:rise .6s 1.3s both}
+.hero .comment{animation:rise .6s 1.5s both}
+
+/* スクロール時: .pending の間だけ手前の状態。文字は薄く見えたまま */
+h2{position:relative;border-bottom-color:transparent}
+h2::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform-origin:left;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+h2.pending::after{transform:scaleX(0)}
+
+.work > *{transition:opacity .5s ease-out,transform .5s ease-out}
+.work > .diff{transition-delay:.05s}
+.work .care{transition-delay:.15s}
+.work .comment{transition-delay:.9s}
+.work.pending > *{opacity:.35;transform:translateY(8px)}
+.work.pending .comment{transform:translateX(-10px);opacity:0}
+
+.can > div{transition:opacity .45s ease-out,transform .45s ease-out}
+.can > div:nth-child(2){transition-delay:.1s}
+.can > div:nth-child(3){transition-delay:.2s}
+.can > div:nth-child(4){transition-delay:.3s}
+.can.pending > div{opacity:.35;transform:translateY(8px)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 @media (max-width:640px){
   .row{grid-template-columns:1fr;gap:12px}
-  .edu{grid-template-columns:1fr;gap:4px}
   .hero .comment{order:-1}
+  .work{grid-template-areas:"head" "diff" "comment" "care";gap:0}
+  .work .comment{margin:6px 0 0 1.6em}
+}
+@media (max-width:640px){
+  .edu{grid-template-columns:1fr;gap:4px}
 }
