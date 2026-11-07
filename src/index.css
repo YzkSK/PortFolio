@@ -6,7 +6,8 @@
   --add:#1f7a43; --add-bg:#e4f4ea; --add-strong:#b7e3c6;
   --print:"BIZ UDPMincho","Hiragino Mincho ProN",serif;
   --head:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* Consolas: Windows では前の3つがなく、日本語の既定等幅(MSゴシック)で記号が崩れるため */
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--ink:#e6e7e9;--gray:#9a9ea6;--rule:#2f3238;--del:#ff7b72;--del-bg:#33191a;--del-strong:#6e2a2a;--add:#5fd48a;--add-bg:#14301f;--add-strong:#1f6139;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#15171a;--ink:#e6e7e9;--gray:#9a9ea6;--rule:#2f3238;--del:#ff7b72;--del-bg:#33191a;--del-strong:#6e2a2a;--add:#5fd48a;--add-bg:#14301f;--add-strong:#1f6139;color-scheme:dark}
