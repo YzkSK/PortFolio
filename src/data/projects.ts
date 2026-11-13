@@ -1,39 +1,75 @@
-export interface Project {
-  id: string
-  title: string
-  category: string
-  tags: string[]
-  thumbBg: string
-  num: string
-  url?: string
-}
+import type { Project } from '../types'
 
 export const projects: Project[] = [
   {
-    id: 'project-1',
-    title: 'YzkApps',
-    category: 'WEB APPLICATION',
-    tags: ['TypeScript', 'React', 'Firebase', 'Gemini API'],
-    thumbBg: 'linear-gradient(140deg,#e8f5ee,#a8d5b5)',
-    num: '01',
-    url: 'https://github.com/YzkSK/YzkApps',
+    id: 'mu-portal-rewrite',
+    title: 'MU Portal Rewrite',
+    url: 'https://github.com/YzkSK/mu-rewrite-plugin',
+    tech: ['Chrome 拡張', 'TypeScript'],
+    year: 2026,
+    before: [
+      '大学の MUSCAT・ポータル・LMS が',
+      { mark: '重くて見づらく' },
+      '、再読み込みすると',
+      { mark: 'エラー画面' },
+      'になる',
+    ],
+    after: [
+      '3つのサイトの画面を、',
+      { mark: '軽くて見やすい画面' },
+      'に置き換える。LMS の提出状況をポータルで確認でき、PDF はその場でプレビューできる',
+    ],
+    care: 'Chrome ウェブストアで公開。送る内容は元のサイトと同じ。文字の大きさを4段階で選べ、意見や不具合はフォームから送れる',
+    note: 'RIP MobileMUSCAT',
   },
   {
-    id: 'project-2',
+    id: 'management-bot',
+    title: 'Management Bot',
+    url: 'https://github.com/YzkSK/Management_Bot',
+    tech: ['TypeScript', 'Discord', 'Docker'],
+    year: 2026,
+    before: [
+      'Discord サーバーのログ確認・モデレーション・予約投稿を',
+      { mark: '手作業' },
+      'でこなしていた',
+    ],
+    after: [
+      '活動の集計、ログ、モデレーション、一時ボイスチャンネル、予約投稿を',
+      { mark: '一つの Bot と Web ダッシュボード' },
+      'にまとめた',
+    ],
+    care: 'ダッシュボードの権限を人ごとに付けられ、操作は監査ログに残る。データは自動でバックアップされる',
+    note: '機能は1行足すだけで増やせる作り',
+  },
+  {
+    id: 'classroom-remaked',
     title: 'classroom remaked',
-    category: 'MOBILE APP',
-    tags: ['Flutter', 'Dart', 'Firebase'],
-    thumbBg: 'linear-gradient(140deg,#ede7f6,#ce93d8)',
-    num: '02',
     url: 'https://github.com/YzkSK/classroom_remaked',
+    tech: ['Flutter', 'Dart', 'Firebase'],
+    year: 2026,
+    before: ['Google Classroom の公式アプリだと、課題の締め切りを', { mark: '見落とす' }],
+    after: [
+      '課題を',
+      { mark: '締め切り順' },
+      'に並べ、ホーム画面のウィジェットと',
+      { mark: '15分ごとの通知' },
+      'で知らせる',
+    ],
+    care: '教師として参加しているコースでは提出状況を表示し、通知は送らない',
+    note: '怠惰人間モード: 未提出が減るまでほかの機能をロック',
   },
   {
-    id: 'project-3',
-    title: 'Discord Bot',
-    category: 'BOT / TOOL',
-    tags: ['TypeScript', 'Discord.js', 'Docker'],
-    thumbBg: 'linear-gradient(140deg,#e8eaf6,#9fa8da)',
-    num: '03',
-    url: 'https://github.com/YzkSK/discord-bot',
+    id: 'yzkapps',
+    title: 'YzkApps',
+    url: 'https://github.com/YzkSK/YzkApps',
+    tech: ['React', 'TypeScript', 'Firebase', 'Gemini API'],
+    year: 2025,
+    before: ['時間割・問題集・動画の管理が、', { mark: '別々のアプリに散らばって' }, 'いた'],
+    after: [
+      { mark: '一つの基盤' },
+      'にまとめ、必要なアプリだけをマーケットプレイスから入れられるようにした',
+    ],
+    care: 'ブラウザ・iOS・Android のどれでも通知を受け取れる',
+    note: 'PDF から問題を自動で作る',
   },
 ]
